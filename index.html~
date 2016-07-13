@@ -395,7 +395,7 @@
           <img class="site-author-image" itemprop="image"
                src="/images/my_avatar.jpg"
                alt="小魏" />
-          <p class="site-author-name" itemprop="name">123</p>
+          <p class="site-author-name" itemprop="name">小魏</p>
           <p class="site-description motion-element" itemprop="description">生活就像海洋</p>
         </div>
         <nav class="site-state motion-element">
@@ -445,7 +445,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">123</span>
+  <span class="author" itemprop="copyrightHolder">小魏</span>
 </div>
 
 <div class="powered-by">
