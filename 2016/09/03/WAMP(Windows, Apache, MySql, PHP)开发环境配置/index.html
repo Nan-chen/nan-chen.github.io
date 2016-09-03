@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20160903190931364">
 <meta property="og:image" content="http://img.blog.csdn.net/20160903190847966">
 <meta property="og:image" content="http://img.blog.csdn.net/20160903190809549">
-<meta property="og:updated_time" content="2016-09-03T11:31:59.156Z">
+<meta property="og:updated_time" content="2016-09-03T11:36:37.073Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WAMP(Windows, Apache, MySql, PHP)开发环境配置">
 <meta name="twitter:description" content="最近在使用LNMP这套框架，在阿里云上配了起来。但是不太会PHP，于是打算学一学。发现大部分关于PHP的教程，使用的都是Apache，选用Apache应该遇到问题能解决的可能性会大一点，于是在本地PC上就搭建WAMP这套东西来用。下面总结一下搭建这套东西的过程。">
@@ -345,16 +345,16 @@
 
       
         <p><strong>最近在使用LNMP这套框架，在阿里云上配了起来。但是不太会PHP，于是打算学一学。发现大部分关于PHP的教程，使用的都是Apache，选用Apache应该遇到问题能解决的可能性会大一点，于是在本地PC上就搭建WAMP这套东西来用。下面总结一下搭建这套东西的过程。</strong></p>
-<p>#1：MySQL<br>mysql很简单，首先不需要跟PHP和Apache有什么关系，使用mysql installer安装Mysql即可。（过程需要依赖的VC，VS，Python3.4等）</p>
+<h1 id="1：MySQL"><a href="#1：MySQL" class="headerlink" title="1：MySQL"></a>1：MySQL</h1><p>mysql很简单，首先不需要跟PHP和Apache有什么关系，使用mysql installer安装Mysql即可。（过程需要依赖的VC，VS，Python3.4等）</p>
 <hr>
-<p>#2：Apache<br><strong>使用Apache Haus版本。</strong><br>到<a href="http://www.apachehaus.com/" target="_blank" rel="external">http://www.apachehaus.com/</a> 下载相应的文件。注意VC版本和系统位数不要下错。<br>把下载的包解压，例如位置在C盘目录，改文件夹名字为Apache.<br>到C:\Apache\conf\httpd.conf修改配置：<br>①把Define SRVROOT XXX 修改为Define SRVROOT “C:\Apache” #注意这里是你安装Apache的对应目录；<br>②Listen 80 处也要修改，因为Windows的80端口被某些服务使用，所以80端口打开会报错。当然可以把对应的服务关掉，但是为了以后使用本机器时其他不必要的麻烦，可以把端口改为其他。例如Listen 2016。保存文件。<br>③cmd到C:\Apache\bin, 使用命令’httpd.exe -k install’安装即可。<br>④要打开Apache,则打开C:\Apache\bin\ApacheMonitor.exe后start<br>⑤在浏览器输入localhost:2016看到apache相应页面则设置成功。<br><img src="http://img.blog.csdn.net/20160903190931364" alt="这里写图片描述"></p>
+<h1 id="2：Apache"><a href="#2：Apache" class="headerlink" title="2：Apache"></a>2：Apache</h1><p><strong>使用Apache Haus版本。</strong><br>到<a href="http://www.apachehaus.com/" target="_blank" rel="external">http://www.apachehaus.com/</a> 下载相应的文件。注意VC版本和系统位数不要下错。<br>把下载的包解压，例如位置在C盘目录，改文件夹名字为Apache.<br>到C:\Apache\conf\httpd.conf修改配置：<br>①把Define SRVROOT XXX 修改为Define SRVROOT “C:\Apache” #注意这里是你安装Apache的对应目录；<br>②Listen 80 处也要修改，因为Windows的80端口被某些服务使用，所以80端口打开会报错。当然可以把对应的服务关掉，但是为了以后使用本机器时其他不必要的麻烦，可以把端口改为其他。例如Listen 2016。保存文件。<br>③cmd到C:\Apache\bin, 使用命令’httpd.exe -k install’安装即可。<br>④要打开Apache,则打开C:\Apache\bin\ApacheMonitor.exe后start<br>⑤在浏览器输入localhost:2016看到apache相应页面则设置成功。<br><img src="http://img.blog.csdn.net/20160903190931364" alt="这里写图片描述"></p>
 <hr>
-<p>#3：PHP<br>下载对应的PHP包，解压到C:\PHP，把php.ini-development重命名为php.ini,此为php的配置文件。下面修改此配置文件使其支持Apache.<br>(1)找到;extension_dir, 取消前面冒号注释，改为extension_dir = “C:\PHP\ext”<br>(2)找到; Windows Extensions下的大量;extension, 取消以下几个的注释以使其支持：<br>extension=php_gd2.dll，extension=php_mbstring.dll，extension=php_exif.dll，extension=php_mysqli.dll，extension=php_pdo_mysql.dll<br>(3)回到Apache的配置文件httpd.conf,在多行LoadModule结尾加上：（前两行注意修改为自己的路径文件）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LoadModule php7_module &quot;C:\PHP\php7apache2_4.dll&quot;</span><br><span class="line">PHPiniDir &quot;C:\PHP&quot;</span><br><span class="line">AddType application/x-httpd-php .html .htm .php</span><br></pre></td></tr></table></figure></p>
+<h1 id="3：PHP"><a href="#3：PHP" class="headerlink" title="3：PHP"></a>3：PHP</h1><p>下载对应的PHP包，解压到C:\PHP，把php.ini-development重命名为php.ini,此为php的配置文件。下面修改此配置文件使其支持Apache.<br>(1)找到;extension_dir, 取消前面冒号注释，改为extension_dir = “C:\PHP\ext”<br>(2)找到; Windows Extensions下的大量;extension, 取消以下几个的注释以使其支持：<br>extension=php_gd2.dll，extension=php_mbstring.dll，extension=php_exif.dll，extension=php_mysqli.dll，extension=php_pdo_mysql.dll<br>(3)回到Apache的配置文件httpd.conf,在多行LoadModule结尾加上：（前两行注意修改为自己的路径文件）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LoadModule php7_module &quot;C:\PHP\php7apache2_4.dll&quot;</span><br><span class="line">PHPiniDir &quot;C:\PHP&quot;</span><br><span class="line">AddType application/x-httpd-php .html .htm .php</span><br></pre></td></tr></table></figure></p>
 <hr>
-<p>#4：测试<br>(1)Apache和php<br>此时应该已apache,php,mysql应该已经搭建好。下面测试是否成功。<br>在C:\Apache\htdocs\目录下，新建info.php文件，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php phpinfo() ?&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="4：测试"><a href="#4：测试" class="headerlink" title="4：测试"></a>4：测试</h1><p>(1)Apache和php<br>此时应该已apache,php,mysql应该已经搭建好。下面测试是否成功。<br>在C:\Apache\htdocs\目录下，新建info.php文件，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php phpinfo() ?&gt;</span><br></pre></td></tr></table></figure></p>
 <p>保存。重启Apache。<br>在浏览器输入localhost:2016/info.php,显示类似如下页面，证明Apache已支持php解释文件。<br><img src="http://img.blog.csdn.net/20160903190847966" alt="这里写图片描述"></p>
-<p>(2)MySql的连接<br>可以使用phpMyAdmin来检验mysql的连接。直接到phpmyadmin官网下载压缩包。解压到C:\Apache\htdocs\目录下，可以把解压后的文件夹重命令为admin。<br>这样在浏览器输入localhost:2016/admin/index.php就会进入mysql数据库的可视化登录窗口。输入对应的账号和密码登录。成功登录。<br>如果到apache的配置文件httpd.conf设置</p>
-<p><ifmodule dir_module=""><br>    DirectoryIndex index.html index.php<br></ifmodule><br>则访问目录后进入的默认页面为index.php。例如访问localhost:2016/admin即可进入phpMyAdmin登录界面。<br><img src="http://img.blog.csdn.net/20160903190809549" alt="这里写图片描述"></p>
+<p>(2)MySql的连接<br>可以使用phpMyAdmin来检验mysql的连接。直接到phpmyadmin官网下载压缩包。解压到C:\Apache\htdocs\目录下，可以把解压后的文件夹重命令为admin。<br>这样在浏览器输入localhost:2016/admin/index.php就会进入mysql数据库的可视化登录窗口。输入对应的账号和密码登录。成功登录。<br>如果到apache的配置文件httpd.conf设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule dir_module&gt; </span><br><span class="line">    DirectoryIndex index.html index.php </span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure></p>
+<p>则访问目录后进入的默认页面为index.php。例如访问localhost:2016/admin即可进入phpMyAdmin登录界面。<br><img src="http://img.blog.csdn.net/20160903190809549" alt="这里写图片描述"></p>
 <hr>
 <blockquote>
 <p>至此WAMP这套框架搭建成功。如果有经验的话很快可以搭好，但是一开始的不懂的话容易出现小问题，所以这里记录一下。<br>CentOS和Ubuntu下搭建LAMP和LNMP的过程后面可能也会以这种记录下来。</p>
@@ -530,7 +530,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1：MySQL"><span class="nav-number">1.</span> <span class="nav-text">1：MySQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2：Apache"><span class="nav-number">2.</span> <span class="nav-text">2：Apache</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3：PHP"><span class="nav-number">3.</span> <span class="nav-text">3：PHP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4：测试"><span class="nav-number">4.</span> <span class="nav-text">4：测试</span></a></li></ol></div>
             
           </div>
         </section>
